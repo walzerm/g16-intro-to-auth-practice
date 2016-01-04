@@ -13,6 +13,7 @@ router.get('/', function(req, res) {
 
 router.post('/index', function(req, res) {
     var errormessages = validator.error(req.body);
+    console.log(req.body);
     res.render('signup', {errormessages: errormessages});
 })
 

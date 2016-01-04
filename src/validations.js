@@ -18,11 +18,13 @@ var emailValidator = function(email) {
     return errorMessage;
 }
 
-var passwordValidator = function(password, confirmPassword) {
+var passwordValidator = function(password, passwordConfirm) {
     var errorMessage = "";
     if (!isEmpty(password)) {
-        if (password !== confirmPassword) {
+        if (password !== passwordConfirm) {
             errorMessage = 'They dont match. Like your socks. And your soul.'
+        } else if (password.length < 8) {
+            errorMessage = 'You belong in preschool, where they teach you to count.'
         }
     }
     else{
@@ -34,8 +36,9 @@ var passwordValidator = function(password, confirmPassword) {
 
 var ErrorGenerator = function(user){
     var errors = [];
+    console.log(user);
     errors.push(emailValidator(user.email));
-    errors.push(passwordValidator(user.password, user.confirmPassword));
+    errors.push(passwordValidator(user.password, user.passwordConfirm));
     return errors;
 }
 
