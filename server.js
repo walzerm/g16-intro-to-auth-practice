@@ -6,8 +6,11 @@ var locus = require('locus');
 var methodOverride = require('method-override');
 var app = express();
 var router = require('./controllers/routes');
+var cookieParser = require('cookie-parser')
+require('dotenv').load();
 
 // middleware
+app.use(logger('dev'));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
@@ -15,6 +18,7 @@ app.use(bodyParser.urlencoded({
 	));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
+app.use(cookieParser(process.env.SECRET));
 
 app.use('/', router);
 

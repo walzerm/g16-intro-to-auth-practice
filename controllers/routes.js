@@ -3,7 +3,7 @@ var router = express.Router();
 var knex = require('./../db/knex');
 
 router.get('/', function(req, res) {
-    res.render('index');
+    res.render('signup');
 })
 
 module.exports = router;
