@@ -7,7 +7,13 @@
     </head>
     <body>
         <h2>Sign up</h2>
-        <form action="index.html" method="post">
+        <form action="/index" method="post">
+            <% errormessages.forEach(function(errormessage) { %>
+                <p>
+                    <%= errormessage %>
+                </p>
+                <br>
+            <% }) %>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="input" name="email" value="">
@@ -18,7 +24,7 @@
             </div>
             <div class="form-group">
                 <label for="password-confirm">Confirm Password</label>
-                <input type="input" name="password-confirm" value="">
+                <input type="input" name="passwordConfirm" value="">
             </div>
             <button type="sumbit">Sign in</button>
         </form>

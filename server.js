@@ -10,7 +10,7 @@ var cookieParser = require('cookie-parser')
 require('dotenv').load();
 
 // middleware
-app.use(logger('dev'));
+app.use(morgan('dev'));
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({
