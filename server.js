@@ -5,6 +5,7 @@ var morgan = require('morgan');
 var locus = require('locus');
 var methodOverride = require('method-override');
 var app = express();
+var router = require('./controllers/routes');
 
 // middleware
 app.use(express.static('public'));
@@ -14,6 +15,8 @@ app.use(bodyParser.urlencoded({
 	));
 app.use(morgan('tiny'));
 app.use(methodOverride('_method'));
+
+app.use('/', router);
 
 var server = app.listen(process.env.PORT || 3000, function () {
 var port = server.address().port;
