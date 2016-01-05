@@ -25,6 +25,7 @@ router.post('/index', function(req, res) {
 
         Users().where({email: req.body.email}).first().then(function(user) {
             if (user) {
+                console.log("bye");
                 errormessages.push('You already exist.');
             } else {
             	var hashedPassword = bcrypt.hashSync(req.body.password, 8);
@@ -39,9 +40,36 @@ router.post('/index', function(req, res) {
     }
 });
 
+router.post('/user', function(req, res) {
+    res.render('user');
+})
+
+router.get('/signin', function(req, res) {
+    res.render('signin');
+})
+
 router.get('/:id', function(req, res){
-	if(req.signedCookies.userID === req.params.id) {
-	}
+    //res.render('signin');
+    // console.log('i made it here?');
+    // if(req.signedCookies.userID === req.params.id) {
+    //   Users().where('id', req.params.id).first().then(function(user){
+    //     if(user) {
+    //       //delete user.password;
+    //       //res.json(user);
+    //       console.log(user);
+    //       console.log('i made it here');
+    //     } else {
+    //       res.status(404);
+    //       res.json({ message: 'not found' });
+    //     }
+    //   }).catch(function(error){
+    //     res.status(404);
+    //     res.json({ message: error.message });
+    //   })
+    // } else {
+    //   res.status(401);
+    //   res.json({ message: 'not allowed' });
+    // }
 });
 
 module.exports = router;
