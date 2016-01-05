@@ -4,10 +4,12 @@ var knex = require('./../db/knex');
 var validator = require('../src/validations')
 var bcrypt = require('bcrypt');
 
+// get all users
 var Users = function() {
   return knex('users');
 }
 
+// sign up
 router.get('/', function(req, res) {
     res.render('signup', {errormessages: []});
 });
@@ -15,7 +17,6 @@ router.get('/', function(req, res) {
 router.post('/index', function(req, res) {
     var errormessages = [];
     errormessages = validator.error(req.body);
-
 
     if(errormessages.length > 0){
         res.render('signup', {errormessages: errormessages});

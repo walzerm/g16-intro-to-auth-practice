@@ -24,9 +24,8 @@ var emailValidator = function(email) {
         emailValid.valid = false;
         errorMessage = 'Did the cat eat your tongue? Please follow email direction this time.';
         emailValid.errors.push(errorMessage);
-
-
     }
+
     return emailValid;
 }
 
@@ -39,7 +38,8 @@ var passwordValidator = function(password, passwordConfirm) {
             passValid.valid = false;
             errorMessage = 'They dont match. Like your socks. And your soul.'
 
-        } else if (password.length < 8) {
+        } 
+        else if (password.length < 8) {
             passValid.valid = false;
             errorMessage = 'You belong in preschool, where they teach you to count.'
             passValid.errors.push(errorMessage);
