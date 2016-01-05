@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var knex = require('./../db/knex');
 var validator = require('../src/validations')
+var bcrypt = require('bcrypt');
 
 var Users = function() {
   return knex('users');
@@ -26,18 +27,21 @@ router.post('/index', function(req, res) {
             if (user) {
                 errormessages.push('You already exist.');
             } else {
+            	var hashedPassword = bcrypt.hashSync(req.body.password, 8);
                 Users().insert({
                     email: req.body.email,
-                    password: req.body.password}).then(function() {
-                        res.redirect('/');
+                    password: hashedPassword}).then(function(id) {
+                    	res.cookie('userID', id[0], { signed: true });
+                        res.redirect('/'+id[0]);
                 });
             }
         });
     }
+});
 
-
-
-
-})
+router.get('/:id', function(req, res){
+	if(req.signedCookies.userID === req.params.id) {
+	}
+});
 
 module.exports = router;
