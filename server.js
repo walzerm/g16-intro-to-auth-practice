@@ -6,7 +6,7 @@ var locus = require('locus');
 var methodOverride = require('method-override');
 var app = express();
 var router = require('./controllers/routes');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 require('dotenv').load();
 
 // middleware
