@@ -52,6 +52,21 @@ router.get('/signin', function(req, res) {
     res.render('signin');
 })
 
+router.post('/user', function(req, res) {
+    Users().where('email', req.body.email).first().then(function(user) {
+        if(user) {
+            if(bcrypt.compareSync(req.body.password, user.password)) {
+                res.cookie('userID', user.id, { signed: true });
+                res.redirect('/user/' + user.id);
+            } else {
+                res.send('Fail');
+            }
+        } else {
+            res.redirect('/');
+        }
+    })
+})
+
 router.get('/signout', function(req, res) {
     res.clearCookie('userID');
     res.redirect('/signin');
