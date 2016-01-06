@@ -52,28 +52,9 @@ router.get('/signin', function(req, res) {
     res.render('signin');
 })
 
-router.get('/:id', function(req, res){
-    //res.render('signin');
-    // console.log('i made it here?');
-    // if(req.signedCookies.userID === req.params.id) {
-    //   Users().where('id', req.params.id).first().then(function(user){
-    //     if(user) {
-    //       //delete user.password;
-    //       //res.json(user);
-    //       console.log(user);
-    //       console.log('i made it here');
-    //     } else {
-    //       res.status(404);
-    //       res.json({ message: 'not found' });
-    //     }
-    //   }).catch(function(error){
-    //     res.status(404);
-    //     res.json({ message: error.message });
-    //   })
-    // } else {
-    //   res.status(401);
-    //   res.json({ message: 'not allowed' });
-    // }
-});
+router.get('/signout', function(req, res) {
+    res.clearCookie('userID');
+    res.redirect('/signin');
+})
 
 module.exports = router;
